@@ -95,7 +95,7 @@ To set up the TextUtil project on your local machine, follow these steps:
 
 1. **Clone the Repository:**
     ```bash
-    git clone https://github.com/your-username/textutil.git
+    git clone https://github.com/MandarKelkarOfficial/textutiles.git
     cd textutil
     ```
 
