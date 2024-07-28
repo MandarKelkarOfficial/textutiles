@@ -1,70 +1,122 @@
-# Getting Started with Create React App
+# TextUtil
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+TextUtil is a powerful text manipulation tool built with React. This application allows users to perform various text transformations and analyses, such as converting text to uppercase or lowercase, counting words and characters, and more.
 
-## Available Scripts
+![TextUtil App](/src/img/app.png)
+*Figure 1: TextUtil App Interface*
 
-In the project directory, you can run:
+![TextUtil App Dark Mode](/src/img/dmApp.png)
+*Figure 2: TextUtil App Interface Dark Mode*
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Convert text to uppercase
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![Mode](/src/img/up.png)
+*Upper Case*
 
-### `npm test`
+- Convert text to lowercase
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Mode](/src/img/lw.png)
+*Lower Case*
 
-### `npm run build`
+- Count words and characters
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Mode](/src/img/sum.png)
+*Summery*
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Remove extra spaces
+- Copy text to clipboard
+![Mode](/src/img/copy.png)
+*Copy*
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Example Code
 
-### `npm run eject`
+Here is a brief explanation of the core functionality implemented in the TextUtil app:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```javascript
+import React, { useState } from 'react';
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+function TextUtil() {
+    const [text, setText] = useState('');
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    const handleUpperCase = () => {
+        let newText = text.toUpperCase();
+        setText(newText);
+    }
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    const handleLowerCase = () => {
+        let newText = text.toLowerCase();
+        setText(newText);
+    }
 
-## Learn More
+    const handleOnChange = (event) => {
+        setText(event.target.value);
+    }
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    const handleCopy = () => {
+        navigator.clipboard.writeText(text);
+    }
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    const handleExtraSpaces = () => {
+        let newText = text.split(/[ ]+/).join(" ");
+        setText(newText);
+    }
 
-### Code Splitting
+    return (
+        <div className="container">
+            <h1>TextUtil - Text Manipulation Tool</h1>
+            <textarea value={text} onChange={handleOnChange} rows="8" className="form-control"></textarea>
+            <button className="btn btn-primary my-3" onClick={handleUpperCase}>Convert to Uppercase</button>
+            <button className="btn btn-primary my-3" onClick={handleLowerCase}>Convert to Lowercase</button>
+            <button className="btn btn-primary my-3" onClick={handleCopy}>Copy Text</button>
+            <button className="btn btn-primary my-3" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+        </div>
+    );
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+export default TextUtil;
+```
 
-### Analyzing the Bundle Size
+### Explanation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. **State Management:** The `text` state is managed using the `useState` hook to store and update the current text.
+2. **Event Handlers:** 
+    - `handleUpperCase` converts the text to uppercase.
+    - `handleLowerCase` converts the text to lowercase.
+    - `handleOnChange` updates the `text` state with the user's input.
+    - `handleCopy` copies the current text to the clipboard.
+    - `handleExtraSpaces` removes extra spaces from the text.
+3. **Rendering:** The component renders a textarea for user input and buttons for performing various text transformations.
 
-### Making a Progressive Web App
+## Setup Instructions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+To set up the TextUtil project on your local machine, follow these steps:
 
-### Advanced Configuration
+1. **Clone the Repository:**
+    ```bash
+    git clone https://github.com/your-username/textutil.git
+    cd textutil
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+2. **Install Dependencies:**
+    ```bash
+    npm install
+    ```
 
-### Deployment
+3. **Start the Development Server:**
+    ```bash
+    npm start
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+4. **Access the Application:**
+    Open your browser and navigate to `http://localhost:3000` to use the TextUtil app.
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Further Help
+
+For more help on React and creating similar applications, refer to the [React documentation](https://reactjs.org/docs/getting-started.html). If you have any questions or need additional assistance, feel free to open an issue in the repository or contact the project maintainers.
+
+---
+
+By following these instructions, you can set up and start using the TextUtil app to manipulate and analyze text with ease. Enjoy transforming your text with TextUtil!
